@@ -33,6 +33,7 @@ resource "aws_security_group" "prodappsg" {
     to_port     = 143
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # Replace with your IP or CIDR range
+    security_groups = [aws_lb.prodapp_alb.id]  
   }
 
   ingress {
@@ -40,8 +41,8 @@ resource "aws_security_group" "prodappsg" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-    security_groups = [aws_security_group.lb_sg.id]
-  }
+    security_groups = [aws_lb.prodapp_alb.id]  
+}
 
  
   # Allow inbound ICMP (ping) traffic from any source
