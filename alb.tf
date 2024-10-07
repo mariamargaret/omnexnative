@@ -1,5 +1,5 @@
 # Create an Application Load Balancer
-resource "aws_lb" "app_alb" {
+resource "aws_lb" "prodapp_alb" {
   name               = "app-alb"
   internal           = false
   load_balancer_type = "application"
@@ -8,7 +8,7 @@ resource "aws_lb" "app_alb" {
 
   tags = {
 
-    Name = "app-alb"
+    Name = "prodapp-alb"
 	}
   
 }
@@ -38,7 +38,7 @@ resource "aws_lb_target_group" "prodapp_tg" {
 
 # Create a Listener
 resource "aws_lb_listener" "app_listener" {
-  load_balancer_arn = aws_lb.app_alb.arn
+  load_balancer_arn = aws_lb.prodapp_alb.arn
   port              = 80
   protocol          = "HTTP"
 
