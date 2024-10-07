@@ -26,27 +26,13 @@ resource "aws_security_group" "prodappsg" {
     cidr_blocks = ["0.0.0.0/0"]  # Replace with your IP or CIDR range
   }
 
-  # Allow SQL Server access from your IP (or other trusted sources)
-  ingress {
-    from_port   = 1433
-    to_port     = 1433
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Replace with your IP or CIDR range
-  }
+ 
 
   ingress {
-    from_port   = 1434
-    to_port     = 1434
+    from_port   = 143
+    to_port     = 143
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # Replace with your IP or CIDR range
-  }
-
-  
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -54,6 +40,7 @@ resource "aws_security_group" "prodappsg" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+    security_groups = [aws_security_group.lb_sg.id]
   }
 
  
@@ -107,27 +94,11 @@ resource "aws_security_group" "appsg" {
     cidr_blocks = ["0.0.0.0/0"]  # Replace with your IP or CIDR range
   }
 
-  # Allow SQL Server access from your IP (or other trusted sources)
   ingress {
-    from_port   = 1433
-    to_port     = 1433
+    from_port   = 143
+    to_port     = 143
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # Replace with your IP or CIDR range
-  }
-
-  ingress {
-    from_port   = 1434
-    to_port     = 1434
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Replace with your IP or CIDR range
-  }
-
-  
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
