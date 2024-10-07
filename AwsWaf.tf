@@ -127,7 +127,7 @@ resource "aws_wafv2_web_acl" "waf" {
 
 # 3. Associate the Web ACL with an Application Load Balancer (ALB)
 resource "aws_wafv2_web_acl_association" "example" {
-  resource_arn = aws_lb.app_alb.arn  # Replace with your ALB ARN
+  resource_arn = aws_lb.prodapp_alb.arn  # Replace with your ALB ARN
   web_acl_arn  = aws_wafv2_web_acl.waf.arn 
 }
 
