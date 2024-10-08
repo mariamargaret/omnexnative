@@ -33,7 +33,7 @@ resource "aws_security_group" "prodappsg" {
     to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # Replace with your IP or CIDR range
-    security_groups = [aws_security_group.prodalb_sg.id]
+    security_groups = [aws_security_group.alb_sg.id]
 
   }
 
@@ -42,7 +42,7 @@ resource "aws_security_group" "prodappsg" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-    security_groups = [aws_security_group.prodalb_sg.id] 
+    security_groups = [aws_security_group.alb_sg.id] 
 }
 
  
